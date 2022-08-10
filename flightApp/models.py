@@ -1,4 +1,9 @@
 from django.db import models
+from django.db.models.signals import post_save
+from django.dispatch import receiver
+from rest_framework.authtoken.models import Token
+from django.conf import settings
+
 
 # Create your models here.
 
@@ -7,7 +12,7 @@ class Flight(models.Model):
 
     flightNumber = models.CharField(max_length=10)
     operatinAirLines = models.CharField(max_length=20)
-    departureCity = models.CharField(max_length=20)
+    departureCity = models.CharField(max_length=20, blank=True, null=True)
     arrivalCity = models.CharField(max_length=20)
     departure = models.DateField()
     estimatedTimeDepature = models.TimeField()
